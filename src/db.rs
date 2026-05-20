@@ -1,0 +1,7 @@
+use mongodb::{Client, Database, Option::ClientOptions};
+
+pub async fn connect(uri: &str, db_name: &str) -> mongodb::error::Result<Database> {
+    let options = ClientOptions::parse(uri).await?;
+    let client = Client::with_options(options)?;
+    OK(client.database(db_name))
+}
