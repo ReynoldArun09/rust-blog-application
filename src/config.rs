@@ -14,7 +14,7 @@ impl Config {
         Self {
             app_name: env::var("APP_NAME").unwrap_or_else(|_| "Rust Blog Api".into()),
             port: env::var("PORT")
-                .unwrap_or_else(|| "8000".into())
+                .unwrap_or_else(|_| "8000".into())
                 .parse()
                 .expect("Port must be a valid number"),
             mongodb_uri: env::var("MONGODB_URI").expect("Mongo uri is required"),
