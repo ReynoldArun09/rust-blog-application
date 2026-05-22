@@ -17,9 +17,9 @@ impl Config {
                 .unwrap_or_else(|_| "8000".into())
                 .parse()
                 .expect("Port must be a valid number"),
-            mongodb_uri: env::var("MONGODB_URI").expect("Mongo uri is required"),
-            database_name: env::var("DATABASE_NAME").expect("Database name is required".into()),
-            jwt_secret: env::var("JWT_SECRET").expect("JWT_SECRET is required"),
+            mongodb_uri: env::var("MONGODB_URI").unwrap_or_else(|_| "mongodb://localhost:27017".to_string()),
+            database_name: env::var("DATABASE_NAME").unwrap_or_else(|_| "rust_blog".to_string()),
+            jwt_secret: env::var("JWT_SECRET").unwrap_or_else(|_| "default_jwt_secret".to_string()),
         }
     }
 }
